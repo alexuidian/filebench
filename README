@@ -1,6 +1,30 @@
 Filebench - A Model Based File System Workload Generator
 ========================================================
 
+* Usage with WML scripts
+
+If you are here, than may be you are already familier with previous filebench version.
+Previous version did not have Control over content of files which are created by filebench for reading.
+Sharable pages and compressable pages(with lxo1 compressor) functionality is added. 
+
+To use add the following attributes while defining a file or a fileset.
+
+1)dup : take numerical value [0:100] , this is % of overall pages which are not unique (shared)
+2)comp : take numerical value [0:100], this is % of compression saving, i.e. comp=60 will make files compressable to nearly 40%  
+3)pagesize: think of it as a blocksize, totalsize/pagesize is number of pages.. and (number_of_pages*dup/100)= not_unique_pages
+
+for example:
+
+This is the 'fileset' definition on webserver.f workload
+    define fileset name=bigfileset,path=$dir,size=16k,entries=1000,dirwidth=20,prealloc=100
+
+Now to add controled page sharing and compressable pages just add two attributes
+
+    define fileset name=bigfileset,path=$dir,size=16k,entries=1000,dirwidth=20,prealloc=100,dup=60,comp=40,pagesize=4096
+    
+    Now adding above line will make 16M of files such that only 9.6M will be unique data and data will be compressable to 9.6M. 
+
+
 * Usage
 
 filebench binary allows to run individual workload personalities. Below is

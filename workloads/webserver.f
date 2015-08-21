@@ -34,7 +34,7 @@ set $dup=100  # what percent of content is shared (1 - unique)
 set $comp=100 # what is content_size after compression
 set pagesize=4096 # block_size of files
 
-define fileset name=bigfileset,path=$dir,size=$meanfilesize,entries=$nfiles,dirwidth=$meandirwidth,prealloc=100,dup=$dup,comp=$comp,$pagesize=pagesize
+define fileset name=bigfileset,path=$dir,size=$meanfilesize,entries=$nfiles,dirwidth=$meandirwidth,prealloc=100,dup=$dup,comp=$comp,pagesize=pagesize
 define fileset name=logfiles,path=$dir,size=$meanfilesize,entries=1,dirwidth=$meandirwidth,prealloc
 
 define process name=filereader,instances=1
