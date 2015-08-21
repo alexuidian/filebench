@@ -222,6 +222,9 @@ int  xlr_create_file(char *buf, filesetentry_t *entry, fb_fdesc_t fdesc, char *p
         blocksize=(off64_t)fileset->fs_pagesize;
         
         total_blocks = (fileset->fs_bytes) / blocksize;
+        if(total_blocks <1)
+            total_blocks=1;
+        
         //printf("xlr: Total pages for filesystem: %llu\n", total_blocks);         
 
         if ((buf = (char *)malloc(blocksize)) == NULL) {
