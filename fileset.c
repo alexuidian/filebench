@@ -196,7 +196,7 @@ void fillbuffer(char *buf, int comp, int blocksize)
 
     for(i=0;i<blocksize;i++)
     {
-        r=xlr_rand() % xlr_rand();
+        r=xlr_rand() + xlr_rand();
         buf[i]=(r)%65+'0';
         if((xlr_rand()%101) <= fetch_from_bucket(comp))
             buf[i]='0';
