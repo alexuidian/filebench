@@ -21,9 +21,10 @@ This is the 'fileset' definition on webserver.f workload
 
 Now to add controled page sharing and compressable pages just add two attributes
 
+
     define fileset name=bigfileset,path=$dir,size=16k,entries=1000,dirwidth=20,prealloc=100,dup=60,comp=40,pagesize=4096
     
-    Now adding above line will make 16M of files such that only 9.6M will be unique data and data will be compressable to 9.6M. 
+    Now adding above line will make 100M of files such that only 60M will be unique pages and one page will be compressable to 60M. 
 
 
 * Usage
