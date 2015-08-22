@@ -116,6 +116,7 @@ int fetch_from_bucket(int comp)
 {
     int bucket=comp/10;
     int mod=comp%10;
+    if(comp==0) return 0;
     if(bucket>=10)
         return 100;
     if(bucket == 9)
@@ -190,8 +191,8 @@ void fillbuffer(char *buf, int comp, int blocksize)
 
     which_block=find_good_block();    
 
-    //printf("RANDOM SEED: %d\n",which_block);
     xlr_srand(which_block);   
+    //printf("RANDOM SEED: %d\n",which_block);
 
     for(i=0;i<blocksize;i++)
     {
@@ -200,7 +201,6 @@ void fillbuffer(char *buf, int comp, int blocksize)
         if((xlr_rand()%101) <= fetch_from_bucket(comp))
             buf[i]='0';
 
-        //printf("comp: %d   value: %d\n",comp,fetch_from_bucket(comp));
         
     }
 
