@@ -135,11 +135,25 @@ unsigned long long find_good_block()
     int randomx,randomy;
 
     prob3= ( 100 * (global_total_blocks - global_unique_blocks))/(global_unique_blocks);
+    global_remaining_total_blocks--; 
     
+    if(global_remaining_nonunique_blocks <= 0 && global_remaining_unique_blocks > 0 && global_remaining_total_blocks > 0 )
+    {
+            global_remaining_unique_blocks--; 
+            if(unique_checker != NULL)
+            {
+                for(temprandom= get_random()%global_unique_blocks;unique_checker[temprandom]==0 ;temprandom=get_random()%global_unique_blocks);
+                    unique_checker[temprandom]=0;   
+                    return temprandom;
+                
+            }
+            else
+                printf("ERROR OCCURED\n");
+
+    }
 
     if(global_remaining_unique_blocks > 0 && global_remaining_total_blocks >0 && global_remaining_nonunique_blocks > 0)
     {
-        global_remaining_total_blocks--; 
         prob2= ( 100 * global_remaining_nonunique_blocks)/ global_remaining_unique_blocks;
     
         if( (prob2 + 2) < prob3)
